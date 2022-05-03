@@ -29,62 +29,32 @@ def insert_rear(l):
 
 l1 = insert_rear([-9,3])
 l2 = insert_rear([5,7])
-
+l1 = insert_rear([1,2,5])
+l2 = insert_rear([1,3,4])
+l1 = insert_rear([5])
+l2 = insert_rear([1,3,4])
+l1 = insert_rear([-2,5])
+l2 = insert_rear([-9,-6,-3,-1,1,6])
 def mergeTwoLists(list1, list2):
-    list3 = ListNode(0)
+    list3 = ListNode('')
     t1 = list1
     t2 = list2
     t3 = list3
-    if not list1 and not list2:
-        return []
-    elif not list1 and list2:
-        return list2
-    elif list1 and not list2:
-        return list1
+
     while t1 and t2:
         if t1.val < t2.val:
-            
-                t3.next = ListNode(t1.val)
-                t3 = t3.next
-                t3.next = ListNode(t2.val)
-        else:
-            
-                t3.next = ListNode(t2.val)
-                t3 = t3.next
-                t3.next = ListNode(t1.val)
-            
-        t3 = t3.next
-        t1 = t1.next
-        t2 = t2.next
-
-    while t1:
-        if t1.val < t3.val:
             t3.next = ListNode(t1.val)
-            t3 = t3.next
+            t1 = t1.next
         else:
-            temp_val = t3.val
-            t3.val = t1.val
-            t3.next = ListNode(temp_val)
-            t3 = t3.next
-        t1 = t1.next
-
-    while t2:
-        if t2.val > t3.val:
             t3.next = ListNode(t2.val)
-            t3 = t3.next
-        else:
-            temp_val = t3.val
-            t3.val = t2.val
-            t3.next = ListNode(temp_val)
-            t3 = t3.next
-        t2 = t2.next
-    
-    
+            t2 = t2.next
+        t3 = t3.next
+
+    if t1:
+        t3.next = t1
+    if t2:
+        t3.next = t2
     return list3.next
-
-
-
-
 print(get_list(l1),get_list(l2))
 result_list = mergeTwoLists(l1,l2)
 print(get_list(result_list))
